@@ -38,14 +38,8 @@ clock = pygame.time.Clock()
 # Definir la finestra
 screen = pygame.display.set_mode((640, 480))
 pygame.display.set_caption('Window Title')
-square_x = 50
-square_y = 50
-width = 50
-height = 50
-dragging = False #Se inicia en true porq es con la opcion que iniciamos
-clicked = False
-offset_x = 0
-offset_y = 0
+
+
 # Definir les dades
 # Bucle de l'aplicació
 def main():
@@ -67,34 +61,15 @@ def app_events():
     global dragging, clicked
 
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            clicked = True
-        if event.type == pygame.MOUSEBUTTONUP:
-            clicked = False
         if event.type == pygame.QUIT: # Botó tancar finestra
             return False
     return True
 
 # Fer càlculs
 def app_run():
-    global square_x, square_y, width, height, dragging, clicked, offset_x, offset_y,color
-    mouse_x, mouse_y = pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]
-
-    if clicked:
-        if not dragging and square_x <= mouse_x <= square_x + width and square_y <= mouse_y <= square_y + height :
-            dragging = True
-            offset_x = mouse_x - square_x 
-            offset_y = mouse_y - square_y
-    else:
-        color = SOFT_GREEN
-        dragging = False
-    
-    if dragging:
-        square_x = mouse_x - offset_x
-        square_y = mouse_y - offset_y
-        color = SOFT_PURPLE
-
-
+    pass
+        
+        
 # Dibuixar
 def app_draw():
     global color
@@ -104,7 +79,7 @@ def app_draw():
     # Dibuixar la graella
     utils1.draw_grid(pygame, screen, 50)
 
-    pygame.draw.rect (screen, color, (square_x, square_y, width, height))
+  
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()
