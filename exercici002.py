@@ -3,7 +3,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
-import utils
+import utils1
 
 # Definir colors
 WHITE = (255, 255, 255)
@@ -23,11 +23,11 @@ def main():
 
     path_shinnosuke = os.path.join(os.path.dirname(__file__), "./assets/exercici002/shinnosuke.png")
     im_shinnosuke = pygame.image.load(path_shinnosuke).convert_alpha()
-    im_shinnosuke = utils.scale_image(pygame, im_shinnosuke, target_width=100)
+    im_shinnosuke = utils1.scale_image(pygame, im_shinnosuke, target_width=100)
 
     path_shiro = os.path.join(os.path.dirname(__file__), "./assets/exercici002/shiro.png")
     im_shiro = pygame.image.load(path_shiro).convert_alpha()
-    im_shiro = utils.scale_image(pygame, im_shiro, target_width=75)
+    im_shiro = utils1.scale_image(pygame, im_shiro, target_width=75)
 
     while is_looping:
         is_looping = app_events()
@@ -56,14 +56,14 @@ def app_draw():
     global im_shinnosuke
 
     screen.fill(WHITE)
-    utils.draw_grid(pygame, screen, 50)
+    utils1.draw_grid(pygame, screen, 50)
     
     import math
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
-import utils
+import utils1
 
 # Definir colors
 WHITE = (255, 255, 255)
@@ -83,11 +83,11 @@ def main():
 
     path_shinnosuke = os.path.join(os.path.dirname(__file__), "./assets/exercici002/shinnosuke.png")
     im_shinnosuke = pygame.image.load(path_shinnosuke).convert_alpha()
-    im_shinnosuke = utils.scale_image(pygame, im_shinnosuke, target_width=100)
+    im_shinnosuke = utils1.scale_image(pygame, im_shinnosuke, target_width=100)
 
     path_shiro = os.path.join(os.path.dirname(__file__), "./assets/exercici002/shiro.png")
     im_shiro = pygame.image.load(path_shiro).convert_alpha()
-    im_shiro = utils.scale_image(pygame, im_shiro, target_width=75)
+    im_shiro = utils1.scale_image(pygame, im_shiro, target_width=75)
 
     while is_looping:
         is_looping = app_events()
@@ -116,7 +116,7 @@ def app_draw():
     global im_shinnosuke
 
     screen.fill(WHITE)
-    utils.draw_grid(pygame, screen, 50)
+    utils1.draw_grid(pygame, screen, 50)
     
     screen.blit(im_shinnosuke, (325, 165))
     screen.blit(im_shiro, (225, 210))

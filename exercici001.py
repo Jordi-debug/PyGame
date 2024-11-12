@@ -3,7 +3,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
-import utils
+import utils1
 
 # Definir colors
 WHITE = (255, 255, 255)
@@ -53,7 +53,7 @@ def app_draw():
     text_rect = font_rect.render(text,True,WHITE)
 
     screen.fill(WHITE)
-    utils.draw_grid(pygame, screen, 50)
+    utils1.draw_grid(pygame, screen, 50)
     #Primer fem el cuadrat
     #Text cuadrat
     pygame.draw.rect(screen, RED, pygame.Rect(50,50,550,100))

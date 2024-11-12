@@ -3,7 +3,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
-import utils
+import utils1
 
 # Definir colors
 WHITE = (255, 255, 255)
@@ -46,7 +46,7 @@ def app_run():
 # Dibuixar
 def app_draw():
     screen.fill(WHITE)
-    utils.draw_grid(pygame, screen, 50)
+    utils1.draw_grid(pygame, screen, 50)
     
     width = 640
     height = 480

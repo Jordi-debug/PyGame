@@ -3,7 +3,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
-import utils
+import utils1
 
 # Definir colors
 BLACK = (0, 0, 0)
@@ -79,7 +79,7 @@ def app_draw():
     # Pintar el fons de blanc
     screen.fill(WHITE)
     # Dibuixar la graella
-    utils.draw_grid(pygame, screen, 50)
+    utils1.draw_grid(pygame, screen, 50)
 
 
     pygame.draw.rect(screen, color, (square_x, square_y, WIDTH, HEIGHT))

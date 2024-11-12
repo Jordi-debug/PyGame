@@ -3,7 +3,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
-import utils
+import utils1
 import random
 
 # Definir colors
@@ -80,7 +80,7 @@ def app_draw():
     fontDetalls = pygame.font.SysFont("Arial",16)
     blau = (50,120,200)
     screen.fill(WHITE)
-    utils.draw_grid(pygame, screen, 50)
+    utils1.draw_grid(pygame, screen, 50)
     pygame.draw.rect(screen,WHITE,(150,100,200,150))
 
     for i in range(0,len(dades)+1):

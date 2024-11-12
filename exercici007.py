@@ -5,7 +5,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
-import utils
+import utils1
 
 # Definir colors
 WHITE = (255, 255, 255)
@@ -67,7 +67,7 @@ def app_draw():
     screen.fill(WHITE)
 
     # Dibuixar la graella
-    utils.draw_grid(pygame, screen, 50)
+    utils1.draw_grid(pygame, screen, 50)
 
     # Dibuixar quadres
     for q in range (0, len(colors)):

@@ -6,7 +6,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
-import utils
+import utils1
 
 # Definir colors
 WHITE = (255, 255, 255)
@@ -49,7 +49,7 @@ def app_run():
 # Dibuixar
 def app_draw():
     screen.fill(WHITE)
-    utils.draw_grid(pygame, screen, 50)
+    utils1.draw_grid(pygame, screen, 50)
     
     # Centre de la finstra
     center_x, center_y = int(screen.get_width() / 2), int(screen.get_height() / 2)

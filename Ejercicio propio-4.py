@@ -3,6 +3,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
+import utils1
 import utils
 
 # Definir colors
@@ -10,22 +11,43 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (50, 120, 200)
 GREEN = (0,254,32)
-
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+CYAN = (0, 255, 255)
+MAGENTA = (255, 0, 255)
+DARK_GRAY = (64, 64, 64)
+GRAY = (128, 128, 128)
+LIGHT_GRAY = (192, 192, 192)
+SOFT_RED = (244, 67, 54)
+SOFT_GREEN = (76, 175, 80)
+SOFT_BLUE = (33, 150, 243)
+SOFT_YELLOW = (255, 235, 59)
+SOFT_ORANGE = (255, 152, 0)
+SOFT_PURPLE = (156, 39, 176)
+PASTEL_PINK = (255, 182, 193)
+PASTEL_GREEN = (119, 221, 119)
+PASTEL_BLUE = (173, 216, 230)
+PASTEL_PURPLE = (216, 191, 216)
 pygame.init()
 clock = pygame.time.Clock()
 
 # Definir la finestra
 screen = pygame.display.set_mode((640, 480))
 pygame.display.set_caption('Window Title')
+dragging = False
+square_x = 50
+square_y = 50
+width = 50
+height = 50
+dragging_x = 0
+dragging_y = 0
+clicked = False
 
 # Definir les dades
-width = 200
-height = 200
-square_x = 100
-square_y = 100
-clicked = False
-color = BLACK
-get_big = True
 # Bucle de l'aplicació
 def main():
     is_looping = True
@@ -43,10 +65,11 @@ def main():
 
 # Gestionar events
 def app_events():
-    global clicked,get_mini, get_big,width,height
+    global dragging, clicked
+
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
-            clicked = True #Ponerlo en una variable asi nos srive para poder dejarlo pulsado
+            clicked = True
         if event.type == pygame.MOUSEBUTTONUP:
             clicked = False
         if event.type == pygame.QUIT: # Botó tancar finestra
@@ -55,13 +78,26 @@ def app_events():
 
 # Fer càlculs
 def app_run():
-    global square_y, square_x, color,width,height, get_big
-    mouse_x, mouse_y = pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]
+    global dragging, dragging_y, square_y, square_x, width, height,color,dragging_x
+    mouse_x,mouse_y = pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]
 
-    if  clicked and square_x <= mouse_x <= square_x + width and square_y <= mouse_y <= square_y + height:
-        color = GREEN
+    if clicked:
+        if not dragging:
+            dragging = True
+            dragging_x = mouse_x - square_x
+            dragging_y = mouse_y - square_y
+            
+    else:   
+        dragging = False
+    
+    if dragging:
+        square_x = mouse_x - dragging_x
+        square_y = mouse_y - dragging_y
+        color = PASTEL_BLUE
     else:
-        color = (0,50,50)
+        color = PASTEL_GREEN
+        
+        
 # Dibuixar
 def app_draw():
     global color
@@ -69,7 +105,7 @@ def app_draw():
     screen.fill(WHITE)
 
     # Dibuixar la graella
-    utils.draw_grid(pygame, screen, 50)
+    utils1.draw_grid(pygame, screen, 50)
 
     pygame.draw.rect(screen, color, (square_x, square_y, width, height))
 
