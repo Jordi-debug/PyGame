@@ -82,7 +82,7 @@ def app_run():
     mouse_x,mouse_y = pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]
 
     if clicked:
-        if not dragging:
+        if not dragging and square_x <= mouse_x <= square_x + width and square_y <= mouse_y <= square_y + height:
             dragging = True
             dragging_x = mouse_x - square_x
             dragging_y = mouse_y - square_y
