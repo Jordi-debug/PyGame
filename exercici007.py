@@ -17,16 +17,19 @@ RED = (202, 73, 65)
 PURPLE = (135, 65, 152)
 BLUE  = (75, 154, 217)
 colors = [GREEN, YELLOW, ORANGE, RED, PURPLE, BLUE]
-
+original_colors = colors.copy()
 pygame.init()
 clock = pygame.time.Clock()
 
 # Definir la finestra
 screen = pygame.display.set_mode((640, 480))
 pygame.display.set_caption('Window Title')
-
+clicked = False
+released = False
 # Bucle de l'aplicació
 def main():
+    global clicked
+    global released
     is_looping = True
 
     while is_looping:
@@ -42,7 +45,12 @@ def main():
 
 # Gestionar events
 def app_events():
+    global colors
     for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            colors = [BLACK]*len(colors)
+        if event.type == pygame.MOUSEBUTTONUP:
+            colors = original_colors.copy()
         if event.type == pygame.QUIT: # Botó tancar finestra
             return False
     return True
@@ -53,7 +61,8 @@ def app_run():
 
 # Dibuixar
 def app_draw():
-    
+    global clicked
+    global released
     # Pintar el fons de blanc
     screen.fill(WHITE)
 
@@ -64,7 +73,7 @@ def app_draw():
     for q in range (0, len(colors)):
         x = 50 + q*100
         pygame.draw.rect(screen, colors[q],(x,50,50,50))
-    
+
     for q in range (0, len(colors)):
         x = 75 + q*100
         pygame.draw.circle(screen, colors[q], (x,175),25,3)
