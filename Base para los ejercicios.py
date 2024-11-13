@@ -38,8 +38,14 @@ clock = pygame.time.Clock()
 # Definir la finestra
 screen = pygame.display.set_mode((640, 480))
 pygame.display.set_caption('Window Title')
-
-
+clicked = False
+square_x = 0
+square_y = 0
+width = 50
+height = 50
+dragging = False #Esto indica la posición inicial de nuestro movimiento. Al principio no se inicia la pantalla arrastrando
+offset_x = 0
+offset_y = 0
 # Definir les dades
 # Bucle de l'aplicació
 def main():
@@ -58,28 +64,45 @@ def main():
 
 # Gestionar events
 def app_events():
-    global dragging, clicked
+    global clicked  
 
     for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            clicked = True
+        if event.type == pygame.MOUSEBUTTONUP:
+            clicked = False
         if event.type == pygame.QUIT: # Botó tancar finestra
             return False
     return True
 
 # Fer càlculs
 def app_run():
-    pass
-        
-        
+    global square_x, square_y, width, height, color, dragging,offset_x, offset_y
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+
+    if clicked:
+        if not dragging and square_x <= mouse_x <= mouse_y and square_y <= mouse_y <= square_y + height:
+            offset_x = mouse_x - square_x
+            offset_y = mouse_y - square_y
+            color = (0,254,34)
+            dragging = True
+    else:
+        color = (0,234,145)
+        dragging = False
+    
+    if dragging:
+        square_x = mouse_x - offset_x
+        square_y = mouse_y - offset_y
 # Dibuixar
 def app_draw():
-    global color
+    global  square_x, square_y, width, height, get_big,color_square, color_circle,radius
     # Pintar el fons de blanc
     screen.fill(WHITE)
 
     # Dibuixar la graella
     utils1.draw_grid(pygame, screen, 50)
 
-  
+    pygame.draw.rect (screen, color, (square_x, square_y, width, height))
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()

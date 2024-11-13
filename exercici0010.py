@@ -89,17 +89,7 @@ def app_draw():
     utils1.draw_grid(pygame, screen, 50)
     mouse_x, mouse_y = pygame.mouse.get_pos()
 
-    for i in rectangles:
-        rect = pygame.Rect(i["rect"]["x"], i["rect"]["y"],i["rect"]["width"],i["rect"]["height"])
-        color = BLACK
-        square_x = i["rect"]["x"]
-        square_y = i["rect"]["y"]
-        width = i["rect"]["width"]
-        height = i["rect"]["height"]
-        if square_x <= mouse_x <= square_x + width and square_y <= mouse_y <= square_y + height:
-            color = i["color"]
-
-        pygame.draw.rect(screen, color,rect)
+    
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()
