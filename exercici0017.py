@@ -54,15 +54,15 @@ def app_draw():
     utils.draw_grid(pygame, screen, 50)
 
     # Dibuixar les dades
+
     for angle in range(0, 361, 15):
-        
-        pos0= utils.point_on_circle({ "x": 300, "y": 250 }, 25, angle)
-        pos1 = utils.point_on_circle({ "x": 300, "y": 250 }, 150, angle)
+        pos = utils.point_on_circle({"x":300, "y":250}, 25,angle)
+        end = utils.point_on_circle({"x":300, "y":250},150,angle)
+        start_pos = (pos["x"],pos["y"])
+        end_pos = (end["x"],end["y"])
 
-        pos0_tuple = (pos0["x"], pos0["y"])
-        pos1_tuple = (pos1["x"], pos1["y"])
+        pygame.draw.line(screen, BLACK,start_pos,end_pos,5)
 
-        pygame.draw.line(screen, BLACK, pos0_tuple, pos1_tuple, 5)
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()
