@@ -58,18 +58,15 @@ def app_draw():
     
     rows = 15
     columns = 21
-    lgt_step = (1/ rows)
-    hue_step = (360 / columns)
-
     for row in range(0, rows):
-        y = 50 + row * 25
-        lightness = lgt_step * row
         for column in range(0, columns):
-            x = 50 + column * 25
-            hue = hue_step * column
-
-            color = utils.hsl_to_rgb(hue, 1.0, lightness)
-            pygame.draw.rect(screen, color, (x, y, 25, 25))
+            y = 50 + row*25
+            x = 50 + column*25
+            saturation = 1
+            light = (1/15)*row
+            hue = (360 / 21)*column
+            color = utils.hsl_to_rgb(hue, saturation, light)
+            pygame.draw.rect(screen, color,(x, y, 25, 25))
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()
