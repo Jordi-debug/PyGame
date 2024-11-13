@@ -50,12 +50,19 @@ def app_draw():
     
     # Pintar el fons de blanc
     screen.fill(WHITE)
-
     # Dibuixar la graella
     utils.draw_grid(pygame, screen, 50)
 
     # Dibuixar les dades
-    
+    saturation = 1
+    light = 0.5
+    columns = 21
+    for column in range(0, columns):
+        x = 50 + column * 25
+        hue = (360 / 21) * column
+        color = utils.hsl_to_rgb(hue, saturation, light)
+
+        pygame.draw.rect(screen, color,(x, 200, 25, 25))
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()
