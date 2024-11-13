@@ -46,6 +46,7 @@ rectangles = [
 # Definir la finestra
 screen = pygame.display.set_mode((640, 480))
 pygame.display.set_caption('Window Title')
+collide = -1
 
 
 # Definir les dades
@@ -75,21 +76,40 @@ def app_events():
 
 # Fer càlculs
 def app_run():
-    pass
+    global collide
 
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+
+    for rect in rectangles:
+        width = rect["rect"]["width"]
+        height = rect["rect"]["height"]
+        square_x = rect["rect"]["x"]
+        square_y = rect["rect"]["y"]
+        if square_x <= mouse_x <= square_x + width and square_y <= mouse_y <= square_y + height:
+            collide = rect #Esto guarda todo el rectangulo si ha colisionado
         
-        
+
 # Dibuixar
 def app_draw():
-    global color
+    global color, collide
     # Pintar el fons de blanc
     screen.fill(WHITE)
 
     # Dibuixar la graella
     utils1.draw_grid(pygame, screen, 50)
-    mouse_x, mouse_y = pygame.mouse.get_pos()
-
     
+    for rect in rectangles:
+        width = rect["rect"]["width"]
+        height = rect["rect"]["height"]
+        square_x = rect["rect"]["x"]
+        square_y = rect["rect"]["y"]
+        
+        """Si en la variable collide se guarda el rectangulo que iteramos, se pintara del color que toca,
+        si no se pinta negro"""
+        if collide == rect: 
+            pygame.draw.rect(screen, rect["color"],(square_x, square_y, width, height))
+
+        pygame.draw.rect(screen, BLACK, (square_x, square_y, width, height),5)
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()
